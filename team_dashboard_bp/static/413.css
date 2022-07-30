@@ -1,0 +1,29 @@
+.content{
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+	align-items: center;
+	color: var(--dark-color1);
+}
+
+.content button{
+	height: 60px;
+	width: fit-content;
+	padding: 10px;
+	font-size: 35px;
+	color: var(--light-color1);
+	background-color: var(--dark-color1);
+	border:  0px;
+	border-radius: 5px;
+	font-weight: bold;
+	cursor: pointer;
+}
+
+.content button:hover{
+	color: var(--dark-color1);
+	background-color: var(--light-color1);
+}
+
+.content a{
+	text-decoration: none;
+}

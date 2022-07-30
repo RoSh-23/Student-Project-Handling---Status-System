@@ -1,0 +1,87 @@
+.dashboard-forms{
+	margin-left: auto;
+	margin-right: auto;
+	display: flex;
+	justify-content: flex-start;
+	flex-direction: column;
+	height: fit-content;
+	min-height: 350px;
+	width: 50vw;
+	min-width: 350px;
+	background-color: var(--dark-color1);
+	border-radius: 10px;
+	padding: 10px 25px 25px 25px;
+}
+
+.dashboard-forms > div {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-evenly;
+	margin: 7px 0px 7px 0px;
+}
+
+#close-btn-div{
+	justify-content: flex-end;	
+	margin-bottom: 15px;
+}
+
+.dashboard-forms > div > label {
+	font-size: calc(1em + 2vmin);
+	color: var(--light-color1);
+	height: 100%;
+	width: 25vw;
+	min-width: 200px;
+}
+
+.dashboard-forms > div > input{
+	height: 45px;
+	width: 35vw;
+	margin: 0px;
+	min-width: 215px;
+	border: 1px var(--light-color1);
+	border-radius: 5px;
+	background-color: var(--light-color1);
+	font-size: calc(0.8em + 1.5vmin);
+}
+
+.dashboard-forms > div > input[type="file"]{
+	background-color: var(--dark-color1);
+	color: var(--light-color1);	
+}
+
+.dashboard-forms > div > input[type="file"]::file-selector-button{
+	background-color: var(--light-color1);
+	color: var(--dark-color1);
+	border: 0px;
+	border-radius: 5px;
+	font-size: calc(0.8em + 1.1vmin);
+	cursor: pointer;	
+}
+
+#action-btn-div{
+	text-align: center;
+	height: 50px;
+	margin-top: 18px;
+	margin-bottom: 8px;
+}
+
+#action-btn-div button{
+	background-color: var(--light-color1);
+	color: var(--dark-color1);
+	border: none;
+	border-radius: 5px;
+	font-size: calc(1em + 2vmin);
+	width: 25vw;
+	height: 100%;
+	cursor: pointer;
+}
+
+#action-btn-div button:hover{
+	background-color: var(--darkest-color);
+	color: var(--light-color1);
+}
+
+#del-q{
+	color: var(--light-color1);
+	font-weight: bold;
+}

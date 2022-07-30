@@ -1,0 +1,53 @@
+{% extends 'auth_common/auth_base.html' %}
+
+{% block head %}
+	<link rel="stylesheet" type="text/css" href="{{ url_for('team_auth_bp.static', filename='sign_up_team.css') }}">
+	<script type="text/javascript" src="{{ url_for('static', filename='auth_common/cnf_password.js') }}"></script>
+	<script type="text/javascript" src="{{ url_for('team_auth_bp.static', filename='sign_up_team.js') }}"></script>
+	{{ super() }}
+	{{ super.super() }}
+	{% block title %}Team Sign Up{% endblock %}
+{% endblock%}
+
+{% block body %}
+	{{ super() }}
+	<h1>Team - Sign Up</h1>
+	{% with messages = get_flashed_messages() %}
+		{% if messages %}
+			{% for message in messages %}
+			<div class="flashed-messages" >
+				{{ message }}
+				<button id="flash-message-close-btn" onclick="remFlashMessage({{ loop.index }})">X
+				</button>
+			</div>
+			{% endfor %}
+		{% endif %}
+	{% endwith %}
+	<form id="guide-signup-form" class="app-forms" method="POST" onsubmit="return validateSamePwd();"
+	onsubmit="return validateUniqRoll();" action="{{ url_for('team_auth_bp.teamSignup') }}">
+		<div>
+			<label for="fn">Number of Members*<div id="myDiv">(Maximum 3)</div></label>
+			<input id="no-of-mem" type="number" min="1" max="3" step="1" name="no-of-mem" required onchange="genRollNoInputElement(this)">
+		</div>
+		<div id="roll-no-container">
+		</div>
+		<error id="roll-unique-alert"></error>
+		<div>
+			<label for="ln">Username*</label>
+			<input type="text" name="uname" maxlength="50" required>
+		</div>
+		<div>
+			<label for="pwd">Password*<div id="myDiv">(8 or more characters)</div></label>
+			<input id="pwd" type="password" name="pwd" maxlength="80" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"  oninvalid="this.setCustomValidity('Minimum one lowercase, uppercase and digit required.')" oninput="setCustomValidity('')" required>
+		</div>
+		<div>
+			<label for="cnf-pwd">Confirm Password*</label>
+			<input id="cnf-pwd" type="password" name="cnf-pwd" maxlength="80" onkeyup="checkPwd(this)" required>
+		</div>
+		<error id="pwd-alert"></error>
+		<br>
+		<div id="btn-div">
+			<button type="submit">Sign Up</button>
+		</div>
+	</form>
+{% endblock %}

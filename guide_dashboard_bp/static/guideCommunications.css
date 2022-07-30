@@ -1,0 +1,43 @@
+.gc-sr-no-cell{
+ 	width: 3vw;
+	max-width: 4vw;
+	min-width: 2.3vw;
+}
+
+.gc-gname-cell{
+	width: 10vw;
+	min-width: 8.7vw;
+	max-width: 12vw;
+}
+
+.gc-latestCommunication-cell{
+	width: 17vw;
+	max-width: 19vw;
+	min-width: 15vw;
+}
+
+.gc-date-cell{
+	width: 12vw;
+	max-width: 13vw;
+	min-width: 10.5vw;
+}
+
+.gc-options-cell{
+	width: 7.7vw;
+	max-width: 9vw;
+	min-width: 7vw;
+}
+
+.view-btns{
+	background-color: var(--darkest-color);
+	width: fit-content;
+	height: 30px;
+	font-size: calc(0.5em + 0.8vmin);
+	color: var(--light-color1);
+	border: 0px;
+	border-radius: 5px;
+	font-weight: bold;
+	padding: 3px 6px 3px 6px;
+	margin: 1.5px 5px 1.5px 5px;
+	cursor: pointer;
+}s

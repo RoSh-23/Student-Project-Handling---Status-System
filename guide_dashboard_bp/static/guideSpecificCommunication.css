@@ -1,0 +1,38 @@
+#cmt-inpt-div{
+	display: flex;
+	flex-direction: column;
+}
+
+#cmt-inpt-div label{
+	margin-bottom: 40px;
+}
+
+#cmt-inpt-div textarea{
+	font-size: calc(0.75rem + 2vmin);
+	background-color: var(--light-color1);
+	color: var(--dark-color1);
+	max-width: 47vw;
+}
+
+.indChat{
+	background-color: var(--light-color1);
+	width: 70vw;
+	border-radius:	10px;
+	padding: 5px 20px 5px 20px;
+	margin: 25px;
+}
+
+.indChat-from{
+	margin:5px;
+	color: var(--dark-color1);
+}
+
+.indChat-content{
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+.indChat-time{
+	margin: 5px;
+	color: var(--dark-color1);
+}

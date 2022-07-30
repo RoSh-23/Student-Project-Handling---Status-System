@@ -1,0 +1,154 @@
+h2{
+	color: var(--light-color1);
+	margin: 0px;
+}
+
+#contentSec{
+	margin-top: 10.2vh;
+	margin-left: 19.5vw;
+}
+
+#contentSec-hd{
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+}
+
+#contentSec-hd h1{
+	color: var(--light-color1);
+	margin: 0px;
+}
+
+/* Add projects button */
+#modal-trigger1{
+	margin-right: 30px;
+}
+
+body{
+	background-color: var(--darkest-color);
+}
+
+#table-div{
+	overflow-x: auto;
+}
+
+table{
+	border-collapse: collapse;
+}
+
+.dashboard-tables{
+	margin: 15px 0px 0px 0px;	
+	width: 78vw;
+	max-width: 78vw;
+	margin-right: auto;
+	margin-left: auto;
+	background-color: var(--light-color1);
+	border-radius: 10px;
+	margin-bottom: 20px;
+}
+
+.dashboard-tables tr{
+	margin-bottom: 10px;
+	margin-top: 5px;
+}
+
+.dashboard-tables tr:hover{
+	cursor: pointer;
+}
+
+
+#header-row{
+	width: 100%;
+	border-bottom: 2px solid;
+}
+
+.dashboard-tables th{
+	color: var(--darkest-color);
+	padding: 3px;
+	margin: 4px;
+	height: 30px;
+	text-align: center;
+	vertical-align: top;
+	font-weight: bold;
+}
+
+.dashboard-tables td{
+	color: var(--darkest-color);
+	padding: 3px;
+	margin: 5px 4px 5px 4px;
+	text-align: center;
+	vertical-align: top;
+	word-wrap: break-word;
+}
+
+.options-cell{
+	width: 5vw;
+	max-width: 5vw;
+	min-width: 5vw;
+	display: flex;
+	flex-direction: row;
+}
+
+.sr-no-cell{
+	width: 3vw;
+	max-width: 3vw;
+	min-width: 3vw;
+}
+
+.pname-cell{
+	width: 17vw;
+	max-width: 17vw;
+	min-width: 17vw;	
+}
+
+.pdur-cell{
+	width: 6vw;
+	max-width: 6vw;
+	min-width: 6vw;
+}
+
+.gname-cell{
+	width: 8vw;
+	min-width: 8vw;
+	max-width: 9vw;
+}
+
+.pres-cell{
+	width: 12vw;
+	min-width: 12vw;
+	max-width: 12vw;	
+}
+
+.rep-cell{
+	width: 14vw;
+	min-width: 14vw;
+	max-width: 14vw;
+}
+
+.rep-cell p{
+	margin: 0px;
+}
+
+.pres-cell p{
+	margin: 0px;
+}
+
+.plink-cell{
+	width: 8vw;
+	max-width: 8vw;
+	min-width: 8vw;
+}
+
+.view-btns{
+	background-color: var(--darkest-color);
+	width: fit-content;
+	height: 30px;
+	font-size: calc(0.5em + 0.8vmin);
+	color: var(--light-color1);
+	border: 0px;
+	border-radius: 5px;
+	font-weight: bold;
+	padding: 3px 6px 3px 6px;
+	margin: 1.5px 5px 1.5px 5px;
+	cursor: pointer;
+}

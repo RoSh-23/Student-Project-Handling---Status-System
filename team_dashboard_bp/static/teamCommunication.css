@@ -1,0 +1,29 @@
+.tc-sr-no-cell{
+ 	width: 3vw;
+	max-width: 4vw;
+	min-width: 2.3vw;
+}
+
+.tc-gname-cell{
+	width: 10vw;
+	min-width: 8.7vw;
+	max-width: 12vw;
+}
+
+.tc-latestCommunication-cell{
+	width: 17vw;
+	max-width: 19vw;
+	min-width: 15vw;
+}
+
+.tc-date-cell{
+	width: 12vw;
+	max-width: 13vw;
+	min-width: 10.5vw;
+}
+
+.tc-options-cell{
+	width: 7.7vw;
+	max-width: 9vw;
+	min-width: 7vw;
+}

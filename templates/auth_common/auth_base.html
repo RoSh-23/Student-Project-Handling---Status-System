@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block head %}
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='auth_common/auth_base.css') }}">
+	<script type="text/javascript" src="{{ url_for('static', filename='auth_common/auth_base.js') }}"></script>
+	{{ super() }}
+{% endblock %}
+	
+{% block body %}
+<header>
+	<div id="hd-titLogo">
+		<div id="hd-titLogo-logo">
+			<a href="{{ url_for('index.index') }}"><img src="{{ url_for('static', filename='org_logo.jpg') }}"></a>
+		</div>
+		<div id="hd-titLogo-title"><p>XYZ Institute</p></div>
+	</div>
+	<div id="hd-txt"><p>Student Project Handling & Status System</p></div>
+	<nav id="hd-nav">
+		<div class="hd-nav-ddowns">
+			<button  id="btn1" class="hd-nav-ddowns-btn" onclick=" func(0); hdNavDdownsTog(1);">Sign Up</button>
+			<div id="ddown1" class="ddowns-content">
+				<a href="{{ url_for('team_auth_bp.teamSignup') }}"><div>Team</div></a>
+				<a href="{{ url_for('guide_auth_bp.guideSignup') }}"><div>Guide</div></a>	
+			</div>
+		</div>
+		<div class="hd-nav-ddowns">
+			<button  id="btn2" class="hd-nav-ddowns-btn" onclick=" func(1); hdNavDdownsTog(2);">Sign In</button>
+			<div id="ddown2" class="ddowns-content">
+				<a href="{{ url_for('team_auth_bp.teamSignin') }}"><div>Team</div></a>
+				<a href="{{ url_for('guide_auth_bp.guideSignin') }}"><div>Guide</div></a>	
+			</div>
+		</div>
+	</nav>
+</header>
+{% endblock %}

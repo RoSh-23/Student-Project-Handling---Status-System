@@ -1,0 +1,141 @@
+{% extends 'dashboard_common/dashboard_base.html' %}
+
+{% block head %}
+	{{ super.super() }}
+	{{ super() }}
+	{% block title %}Guide Dashboard - Home{% endblock %}
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='dashboard_common/modal.css') }}">
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='dashboard_common/dashboard_forms.css') }}">
+	<link rel="stylesheet" type="text/css" href="{{ url_for('guide_dashboard_bp.static', filename='guide_dashboard_home.css') }}">
+	<link rel="stylesheet" type="text/css" href="{{ url_for('guide_dashboard_bp.static', filename='projDetailsModal.css') }}">
+{% endblock%}
+
+{% block org_logo %}
+	<a href="{{ url_for('guide_dashboard_bp.guide_dashboard_home') }}"><img src="{{ url_for('static', filename='org_logo.jpg') }}"></a>
+{% endblock %}
+
+{% block username %}
+	{{ session['guide_username'] }}
+{% endblock %}
+
+{% block logout %}
+	<a href="{{ url_for('guide_auth_bp.guideLogout') }}"><button id="logout-btn">Logout</button></a>
+{% endblock %}
+
+{% block side_nav_options %}
+	<ul>
+		<a href="{{ url_for('guide_dashboard_bp.guide_dashboard_home') }}"><li>Project List</li></a>
+		<a href="{{ url_for('guide_dashboard_bp.guideProfile') }}"><li>My Profile</li></a>
+		<a href="{{ url_for('guide_dashboard_bp.guideCommunications') }}"><li>Manage Communications</li></a>
+	</ul>
+{% endblock %}
+
+{% block body %}
+	{{ super() }}
+	{% with messages = get_flashed_messages() %}
+		{% if messages %}
+			{% for message in messages %}
+			<div class="flashed-messages" >
+				{{ message }}
+				<button id="flash-message-close-btn" onclick="remFlashMessage({{ loop.index }})">X
+				</button>
+			</div>
+			{% endfor %}
+		{% endif %}
+	{% endwith %}
+	<section id="contentSec">
+		<div id="contentSec-hd">
+			<h1>Project List</h1>
+		</div>
+		<div id="table-div">
+			<table class="dashboard-tables">
+				<tr id="header-row">
+					<th class="sr-no-cell">Sr. No.</th>
+					<th class="pname-cell">Name</th>
+					<th class="class-cell">Class</th>
+					<th class="tname-cell">Team Name</th>
+					<th class="noOfMem-cell">No. of Members</th>
+					<th class="leadName-cell">Leader Name</th>
+					<th>Options</th>
+				</tr>
+				{% for row in guideHomeData %}
+				<tr>
+					<td class="sr-no-cell">{{ loop.index }}</td>
+					<td class="pname-cell">{{ row[1] }}</td>
+					<td class="class-cell">{{ row[2] }}</td>
+					<td class="tname-cell">{{ row[3] }}</td>
+					<td class="noOfMem-cell">{{ row[4] }}</td>
+					<td class="leadName-cell">{{ row[5] }}</td>
+					<td class="options-cell">
+						<div id="opt-grid-container">
+							<div class="grid-child">
+								<button id="modal-trigger{{ loop.index }}" onclick="showThisModal({{ loop.index }})" class="modal-trigger tdOptions-btns">Project Details</button>
+							</div>
+							<div class="grid-child">
+							 <a href="{{ url_for('guide_dashboard_bp.getMembersDetail', inputPID=row[0]) }}" target="_blank"><button type="submit" class="tdOptions-btns">Member Details</button></a>
+							</div>	
+						</div>
+					</td>
+				</tr>
+				{% endfor %}
+			</table>
+		</div>
+		{% for row in guideHomeData %}
+		<div id="modal{{ loop.index }}" class="modal">
+			<div id="modal-content{{ loop.index }}" class="proj-modal-content dashboard-forms">
+				<div id="close-btn-div">
+					<span id="modal-close-button{{ loop.index }}" class="modal-close-button" onclick="closeThisModal({{ loop.index }})">&times;
+					</span>
+				</div>
+				<table class="dashboard-tables">
+					<tr id="header-row">
+						<th class="pd-pname-cell">Name</th>
+						<th class="pd-pdur-cell">Duration</th>
+						<th class="pd-pres-cell">Presenation</th>
+						<th class="pd-rep-cell">Report</th>
+						<th class="pd-plink-cell">Project Link</th>
+					</tr>
+					<tr>
+						<td class="pd-pname-cell">{{ row[1] }}</td>
+						<td class="pd-pdur-cell">{{ row[6] }}</td>
+						<td class="pd-pres-cell" id="pres-file-cell">
+							<p>
+								<a href="{{ url_for('guide_dashboard_bp.serveFile', inputPID=row[0], file_reqd=1) }}" target="_blank"><button class="view-btns">View</button></a>
+							</p>
+							<p>
+								{% if row[8] is not none %}
+									{{ row[8].strftime('%d-%m-%Y, %H:%M') }}
+								{% else %}
+									Not Uploaded 
+								{% endif %}
+							</p>
+						</td>
+						<td class="pd-rep-cell" id="rep-file-cell">
+							<p>
+								<a href="{{ url_for('guide_dashboard_bp.serveFile',  inputPID=row[0] , file_reqd=2) }}" target="_blank"><button class="view-btns">View</button></a>
+							</p>
+							<p>
+								{% if row[9] is not none %}
+									{{ row[9].strftime('%d-%m-%Y, %H:%M') }}
+								{% else %}
+									Not Uploaded 
+								{% endif %}
+							</p>
+						</td>
+						<td class="pd-plink-cell">
+							{% if row[7] is not none %}
+								<a href="{{ row[7] }}" target="_blank"><button class="view-btns">Go To Link</button></a>
+							{% else %}
+								<a href="{{ row[7] }}" target="_blank"><button class="view-btns">Go To Link</button></a>
+								Not Entered 
+							{% endif %}	
+						</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+		{% endfor %}
+	</section>
+	<script type="text/javascript" src="{{ url_for('static', filename='dashboard_common/modal.js') }}"></script>
+	<script type="text/javascript" src="{{ url_for('static', filename='dashboard_common/dashboard_base.js') }}"></script>
+{% endblock %}

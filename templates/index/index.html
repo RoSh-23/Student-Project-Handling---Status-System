@@ -1,0 +1,40 @@
+{% extends 'auth_common/auth_base.html' %}
+
+{% block head %}
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='index/index.css') }}">
+	{{ super() }}
+	{{ super.super() }}
+	{% block title %}Home Page{% endblock %}
+{% endblock%}
+
+{% block body %}
+	{{ super() }}
+	<div id="container">
+		<div id="sc-1"><h2>CS-3801B: Project</h2></div>
+		<div id="sc-2"><h1>Student Project Handling & Status System</h1></div>
+		<div id="sc-3">
+			<div>
+				<img id="davv-logo" src="{{ url_for('static', filename='index/DAVV_logo.jfif') }}">
+			</div>
+			<div>
+				<img id="scsit-logo" src="{{ url_for('static', filename='index/SCSIT_logo.png') }}">
+			</div>
+		</div>
+		<div id="sc-4">
+			<div id="sc-4-1">
+				<p>Under the guidance of </p>
+				<p>Mr. Himanshu Kamal Verma</p>
+			</div>
+			<div id="sc-4-2">
+				<p>Presented & Submitted by</p>
+				<p>Rohan Shah  1911137</p>
+				<p>BCA VI - 'A'</p>
+			</div>
+		</div>
+		<div id="sc-5">
+			<p>School of Computer Science & Information Technology</p>
+			<p>Devi Ahilya Vishwavidyalaya, Indore, M. P.</p>
+			<p>2022</p>
+		</div>
+	</div>
+{% endblock %}

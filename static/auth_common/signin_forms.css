@@ -1,0 +1,71 @@
+h1{
+	margin-top: 12vh;
+	margin-bottom: 5vh;
+	color: var(--dark-color1);
+	text-align: center;
+}
+
+.app-forms{
+	margin-left: auto;
+	margin-right: auto;
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+	align-items: center;
+	height: 35vh;
+	min-height: 350px;
+	width: 50vw;
+	min-width: 225px;
+	background-color: var(--dark-color1);
+	border-radius: 10px;
+	padding: 7px;
+}
+
+.app-forms > label {
+	font-size: calc(1em + 2vmin);
+	color: var(--light-color1);
+	height: 15%;
+}
+
+.app-forms > input{
+	height: 15%;
+	width: 47vw;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 1.5%;
+	margin-bottom: 1.5%;
+	min-width: 215px;
+	border: 1px var(--light-color1);
+	border-radius: 5px;
+	background-color: var(--light-color1);
+	font-size: calc(0.7em + 1.8vmin);
+}
+
+.app-forms > input[type="text"]{
+	
+}
+
+.app-forms > input[type="password"]{
+
+}
+
+.app-forms > input[type="email"]{
+
+}
+
+.app-forms > button{
+	background-color: var(--light-color1);
+	color: var(--dark-color1);
+	border: none;
+	border-radius: 5px;
+	font-size: calc(1em + 2vmin);
+	width: 25vw;
+	height: 15%;
+	margin-bottom: 1%;
+	cursor: pointer;
+}
+
+.app-forms > button:hover{
+	background-color: var(--darkest-color);
+	color: var(--light-color1);
+}

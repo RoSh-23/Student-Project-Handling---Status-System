@@ -1,0 +1,23 @@
+@import url('https://fonts.googleapis.com/css?family=Marmelad');
+
+:root {
+  --dark-color1: #ffb61a;
+  --light-color1: #ffffe6;
+  --darkest-color: #000;
+}
+
+*, *::before, *::after{
+  box-sizing: border-box;
+}
+
+html{
+  scroll-behavior: smooth;
+  font-size: calc(0.75em + 1vmin);
+}
+
+body{
+  font-family: Marmelad, monospace, sans-serif;
+  height: 100vh;
+  width: 100%;
+  margin: 0px;
+}

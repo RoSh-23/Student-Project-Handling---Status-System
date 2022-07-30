@@ -1,0 +1,123 @@
+h1{
+	margin-top: 12vh;
+	margin-bottom: 5vh;
+	color: var(--dark-color1);
+	text-align: center;
+}
+
+.app-forms{
+	margin-left: auto;
+	margin-right: auto;
+	display: flex;
+	justify-content: flex-start;
+	flex-direction: column;
+	height: fit-content;
+	min-height: 350px;
+	width: 65vw;
+	min-width: 350px;
+	background-color: var(--dark-color1);
+	border-radius: 10px;
+	padding: 15px;
+}
+
+#pwd-alert, #roll-unique-alert{
+	color: var(--light-color1);
+	display: flex;
+	justify-content: center;
+}
+
+.app-forms > div {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-evenly;
+	margin: 7px 0px 7px 0px;
+}
+
+.app-forms > div > label {
+	font-size: calc(1em + 2vmin);
+	color: var(--light-color1);
+	height: 100%;
+	width: 25vw;
+	min-width: 200px;
+}
+
+#roll-no-container{
+	flex-direction: column;
+}
+
+.app-forms > div > input{
+	height: 45px;
+	width: 35vw;
+	margin: 0px;
+	min-width: 215px;
+	border: 1px var(--light-color1);
+	border-radius: 5px;
+	background-color: var(--light-color1);
+	font-size: calc(0.8em + 1.5vmin);
+}
+
+#myDiv{
+	font-size: calc(0.5em + 0.5vmin);
+}
+
+.app-forms > input[type="text"]{
+	
+}
+
+.app-forms > input[type="password"]{
+
+}
+
+.app-forms > input[type="email"]{
+
+}
+
+.roll-no-div{
+	display: flex;
+	flex-direction: row;
+	justify-content: space-evenly;
+	margin: 7px 0px 7px 0px;
+}
+
+.roll-no-input-label{
+	font-size: calc(1em + 2vmin);
+	color: var(--light-color1);
+	height: 100%;
+	width: 25vw;
+	min-width: 200px;
+}
+
+.roll-no-input{
+	height: 45px;
+	width: 35vw;
+	margin: 0px;
+	min-width: 215px;
+	border: 1px var(--light-color1);
+	border-radius: 5px;
+	background-color: var(--light-color1);
+	font-size: calc(0.8em + 1.5vmin);
+}
+
+#btn-div{
+	text-align: center;
+	height: 50px;
+	margin-top: 18px;
+	margin-bottom: 8px;
+}
+
+.app-forms button{
+	background-color: var(--light-color1);
+	color: var(--dark-color1);
+	border: none;
+	border-radius: 5px;
+	font-size: calc(1em + 2vmin);
+	width: 25vw;
+	height: 100%;
+	cursor: pointer;
+}
+
+.app-forms button:hover{
+	background-color: var(--darkest-color);
+	color: var(--light-color1);
+}
+

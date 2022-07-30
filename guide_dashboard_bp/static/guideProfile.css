@@ -1,0 +1,37 @@
+.flash-msg{
+	margin-top: 9vh;
+}
+
+#contentSec-hd{
+	margin-bottom: 25px;
+	display: flex;
+	justify-content: center;
+}
+
+#profile-div{
+	width: 50vw;
+	margin-left: auto;
+	margin-right: auto;
+	background-color: var(--light-color1);
+	border-radius: 10px;
+	text-align: center;
+	padding: 15px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+
+#profile-div > div{
+	display: flex;
+	flex-direction: row;
+}
+
+#profile-div > div > h2{
+	width: 21vw;
+	min-width: 20vw;
+}
+
+#edt-btn-div{
+	text-align: center;
+	justify-content: center;
+}

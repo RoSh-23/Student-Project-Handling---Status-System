@@ -1,0 +1,33 @@
+.proj-modal-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: var(--dark-color1);
+    padding: 1rem 1.5rem;
+    width: 85vw;
+    border-radius: 0.5rem;
+}
+
+.view-btns{
+    background-color: var(--darkest-color);
+    width: fit-content;
+    height: 30px;
+    font-size: calc(0.5em + 0.8vmin);
+    color: var(--light-color1);
+    border: 0px;
+    border-radius: 5px;
+    font-weight: bold;
+    padding: 3px 6px 3px 6px;
+    margin: 1.5px 5px 1.5px 5px;
+    cursor: pointer;
+}
+
+.proj-modal-content p{
+    margin: 0px;
+}
+
+.pd-plink-cell{
+    width: 10vw;
+    max-width: 11vw;
+}

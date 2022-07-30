@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<html>
+	<head>
+		{% block head %}
+			<meta charset="utf-8">
+			<meta name="viewport" content="width=device-width, initial-scale=1">
+			<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename = 'base.css') }}">
+			<link rel="shortcut icon" type="image/x-icon" href="{{ url_for('static', filename = 'org_logo.jpg') }}">
+			<title>{% block title %}{% endblock %}</title>
+		{% endblock %}
+	</head>
+	<body>
+		{% block body %}
+		{% endblock %}
+	</body>
+</html>

@@ -1,0 +1,96 @@
+{% extends 'dashboard_common/dashboard_base.html' %}
+
+{% block head %}
+	{{ super.super() }}
+	{{ super() }}
+	{% block title %}Team Dashboard - Manage Communication{% endblock %}
+	<link rel="stylesheet" type="text/css" href="{{ url_for('team_dashboard_bp.static', filename='team_dashboard_home.css') }}">
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='dashboard_common/modal.css') }}">
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='dashboard_common/dashboard_forms.css') }}">
+	<link rel="stylesheet" type="text/css" href="{{ url_for('team_dashboard_bp.static', filename='teamCommunication.css') }}">
+{% endblock %}
+
+{% block org_logo %}
+	<a href="{{ url_for('team_dashboard_bp.team_dashboard_home') }}"><img src="{{ url_for('static', filename='org_logo.jpg') }}"></a>
+{% endblock %}
+
+{% block username %}
+	{{ session['team_username'] }}
+{% endblock %}
+
+{% block logout %}
+	<a href="{{ url_for('team_auth_bp.teamLogout') }}"><button id="logout-btn">Logout</button></a>
+{% endblock %}
+
+{% block side_nav_options %}
+	<ul>
+		<a href="{{ url_for('team_dashboard_bp.team_dashboard_home') }}"><li>Manage Projects</li></a>
+		<a href="{{ url_for('team_dashboard_bp.manageMembers') }}"><li>Manage Member Details</li></a>
+		<a href="{{ url_for('team_dashboard_bp.guideDetails') }}"><li>Guide Details</li></a>
+		<a href="{{ url_for('team_dashboard_bp.teamCommunicate') }}"><li>Manage Communication</li></a>
+	</ul>
+{% endblock %}
+
+{% block body %}
+	{{ super() }}
+	{% with messages = get_flashed_messages() %}
+		{% if messages %}
+			{% for message in messages %}
+			<div class="flashed-messages" >
+				{{ message }}
+				<button id="flash-message-close-btn" onclick="remFlashMessage({{ loop.index }})">X
+				</button>
+			</div>
+			{% endfor %}
+		{% endif %}
+	{% endwith %}
+	<section id="contentSec">
+		<div id="contentSec-hd">
+			<h1>Manage Communication</h1>
+		</div>
+		<div id="table-div">
+			<table class="dashboard-tables">
+				<tr id="header-row">
+					<th class="tc-sr-no-cell">Sr. No.</th>
+					<th class="tc-gname-cell">Guide Name</th>
+					<th class="tc-lastestCommunication-cell">Latest Communication</th>
+					<th class="tc-date-cell">Date</th>
+					<th>Options</th>
+				</tr>
+				{% for row in associatedGuides %}
+				<tr>
+					<td class="tc-sr-no-cell">{{ loop.index }}</td>
+					<td class="tc-gname-cell">{{ row[1] }}</td>
+					<td class="tc-lastestCommunication-cell">
+						{% if communicationData is defined and communicationData|length > 0 %}
+							{% if communicationData[loop.index - 1] is not none %}
+								{{ communicationData[loop.index - 1][1] }}
+							{% else %}
+								No Communication	
+							{% endif %}
+						{% else %}
+							No Communication 
+						{% endif %}
+					</td>
+					<td class="tc-date-cell">
+						{% if communicationData is defined and communicationData|length > 0 %}
+							{% if communicationData[loop.index - 1] is not none %}
+								{{ communicationData[loop.index - 1][3].strftime('%d-%m-%Y, %H:%M') }}
+							{% else %}
+								No Communication 
+							{% endif %}	
+						{% else %}
+							No Communication 
+						{% endif %}
+					</td>
+					<td class="tc-options-cell">
+						<a href="{{ url_for('team_dashboard_bp.teamSpecificCommunication', inputGID=row[0]) }}"><button class="view-btns">Communicate</button></a>
+					</td>
+				</tr>
+				{% endfor %}
+			</table>
+		</div>
+	</section>
+	<script type="text/javascript" src="{{ url_for('static', filename='dashboard_common/modal.js') }}"></script>
+	<script type="text/javascript" src="{{ url_for('static', filename='dashboard_common/dashboard_base.js') }}"></script>
+{% endblock %}

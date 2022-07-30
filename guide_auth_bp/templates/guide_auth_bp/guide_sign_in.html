@@ -1,0 +1,31 @@
+{% extends 'auth_common/auth_base.html' %}
+
+{% block head %}
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='auth_common/signin_forms.css') }}">
+	{{ super() }}
+	{{ super.super() }}
+	{% block title %}Guide Sign In{% endblock %}
+{% endblock%}
+
+{% block body %}
+	{{ super() }}
+	<h1>Guide - Sign In</h1>
+	{% with messages = get_flashed_messages() %}
+		{% if messages %}
+			{% for message in messages %}
+			<div class="flashed-messages" >
+				{{ message }}
+				<button id="flash-message-close-btn" onclick="remFlashMessage({{ loop.index }})">X
+				</button>
+			</div>
+			{% endfor %}
+		{% endif %}
+	{% endwith %}
+	<form id="guide-signin-form" class="app-forms" method="POST" action="{{ url_for('guide_auth_bp.guideSignin') }}">
+		<label for="uname">Username*</label>
+		<input type="email" name="uname" maxlength="80" required><br>
+		<label for="pwd">Password*</label>
+		<input type="password" name="pwd" maxlength="80" required><br>
+		<button type="submit">Sign In</button>
+	</form>
+{% endblock %}

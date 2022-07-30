@@ -1,0 +1,52 @@
+{% extends 'auth_common/auth_base.html' %}
+
+{% block head %}
+	<link rel="stylesheet" type="text/css" href="{{ url_for('guide_auth_bp.static', filename='sign_up_guide.css') }}">
+	<script type="text/javascript" src="{{ url_for('static', filename='auth_common/cnf_password.js') }}"></script>
+	{{ super() }}
+	{{ super.super() }}
+	{% block title %}Guide Sign Up{% endblock %}
+{% endblock%}
+
+{% block body %}
+	{{ super() }}
+	<h1>Guide - Sign Up</h1>
+	{% with messages = get_flashed_messages() %}
+		{% if messages %}
+			{% for message in messages %}
+			<div class="flashed-messages" >
+				{{ message }}
+				<button id="flash-message-close-btn" onclick="remFlashMessage({{ loop.index }})">X
+				</button>
+			</div>
+			{% endfor %}
+		{% endif %}
+	{% endwith %}
+	<form id="guide-signup-form" class="app-forms" method="POST" onsubmit="return validateSamePwd()" action="{{ url_for('guide_auth_bp.guideSignup') }}">
+		<div>
+			<label for="fn">First Name*</label>
+			<input type="text" name="fn" maxlength="50" required>
+		</div>
+		<div>
+			<label for="ln">Last Name*</label>
+			<input type="text" name="ln" maxlength="50" required>
+		</div>
+		<div>
+			<label for="email">Email*</label>
+			<input type="email" name="email" maxlength="80" required>
+		</div>
+		<div>
+			<label for="pwd">Password* <div id="myDiv">(8 or more characters)</div></label>
+			<input id="pwd" type="password" name="pwd" maxlength="80" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"  oninvalid="this.setCustomValidity('Minimum one lowercase, uppercase and digit required.')" oninput="setCustomValidity('')" required>
+		</div>
+		<div>
+			<label for="cnf-pwd">Confirm Password*</label>
+			<input id="cnf-pwd" type="password" name="cnf-pwd" maxlength="80" onkeyup="checkPwd(this)" required>
+		</div>
+		<error id="pwd-alert"></error>
+		<br>
+		<div id="btn-div">
+			<button type="submit">Sign Up</button>
+		</div>
+	</form>
+{% endblock %}

@@ -1,0 +1,192 @@
+{% extends 'dashboard_common/dashboard_base.html' %}
+
+{% block head %}
+	{{ super.super() }}
+	{{ super() }}
+	{% block title %}Team Dashboard - Home{% endblock %}
+	<link rel="stylesheet" type="text/css" href="{{ url_for('team_dashboard_bp.static', filename='team_dashboard_home.css') }}">
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='dashboard_common/modal.css') }}">
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='dashboard_common/dashboard_forms.css') }}">
+{% endblock %}
+
+{% block org_logo %}
+	<a href="{{ url_for('team_dashboard_bp.team_dashboard_home') }}"><img src="{{ url_for('static', filename='org_logo.jpg') }}"></a>
+{% endblock %}
+
+{% block username %}
+	{{ session['team_username'] }}
+{% endblock %}
+
+{% block logout %}
+	<a href="{{ url_for('team_auth_bp.teamLogout') }}"><button id="logout-btn">Logout</button></a>
+{% endblock %}
+
+{% block side_nav_options %}
+	<ul>
+		<a href="{{ url_for('team_dashboard_bp.team_dashboard_home') }}"><li>Manage Projects</li></a>
+		<a href="{{ url_for('team_dashboard_bp.manageMembers') }}"><li>Manage Member Details</li></a>
+		<a href="{{ url_for('team_dashboard_bp.guideDetails') }}"><li>Guide Details</li></a>
+		<a href="{{ url_for('team_dashboard_bp.teamCommunicate') }}"><li>Manage Communication</li></a>
+	</ul>
+{% endblock %}
+
+{% block body %}
+	{{ super() }}
+	{% with messages = get_flashed_messages() %}
+		{% if messages %}
+			{% for message in messages %}
+			<div class="flashed-messages" >
+				{{ message }}
+				<button id="flash-message-close-btn" onclick="remFlashMessage({{ loop.index }})">X
+				</button>
+			</div>
+			{% endfor %}
+		{% endif %}
+	{% endwith %}
+	<section id="contentSec">
+		<div id="contentSec-hd">
+			<h1>Manage Projects</h1>
+			<button id="modal-trigger1" onclick="showThisModal(1)" class="add-btns modal-trigger">Add New Project</button>
+		</div>
+		<div id="modal1" class="modal">
+			<form id="modal-content1" class="modal-content dashboard-forms" method="POST" action="{{ url_for('team_dashboard_bp.teamAddProject') }}" enctype="multipart/form-data">
+				<div id="close-btn-div">
+					<span id="modal-close-button1" class="modal-close-button" onclick="closeThisModal(1)">&times;
+					</span>
+				</div>
+				<div>
+					<label for="proj-name">Name*</label>
+					<input type="text" name="proj-name" maxlength="50" required>
+				</div>
+				<div>
+					<label for="proj-duration">Duration*</label>
+					<input type="text" name="proj-duration" maxlength="20" required>
+				</div>
+				<div>
+					<label for="proj-pres">Presentation<div class="labelSmallText">(Max 20 MB, .pdf, .ppt, .pptx, .odp, .key)</div></label>
+					<input type="file" name="proj-pres" accept=".pdf,.ppt,.pptx,.odp,.key">
+				</div>
+				<div>
+					<label for="proj-report">Report<div class="labelSmallText">(Max 20 MB, .pdf, .doc, .docx, .pages, .odt)</div></label>
+					<input type="file" name="proj-report" accept=".pdf,.doc,.docx,.pages,.odt">
+				</div>
+				<div>
+					<label for="proj-repo-link">Project Link</label>
+					<input type="text" name="proj-repo-link" maxlength="180">
+				</div>
+				<div id="action-btn-div">
+					<button type="submit">Add</button>
+				</div>
+			</form>
+		</div>
+		<div id="table-div">
+			<table class="dashboard-tables">
+				<tr id="header-row">
+					<th class="sr-no-cell">Sr. No.</th>
+					<th class="pname-cell">Name</th>
+					<th class="pdur-cell">Duration</th>
+					<th class="gname-cell">Guide Name</th>
+					<th class="pres-cell">Presenation</th>
+					<th class="rep-cell">Report</th>
+					<th class="plink-cell">Project Link</th>
+					<th>Options</th>
+				</tr>
+				{% for row in teamHomeData %}
+				<tr>
+					<td class="sr-no-cell">{{ loop.index }}</td>
+					<td class="pname-cell">{{ row[1] }}</td>
+					<td class="pdur-cell">{{ row[2] }}</td>
+					<td class="gname-cell">{{ row[3] }}</td>
+					<td class="pres-cell" id="pres-file-cell">
+						<p>
+							<a href="{{ url_for('team_dashboard_bp.serveFile', inputPID=row[0], file_reqd=1) }}" target="_blank"><button class="view-btns">View</button></a>
+						</p>
+						<p>
+							{% if row[5] is not none %}
+								{{ row[5].strftime('%d-%m-%Y, %H:%M') }}
+							{% else %}
+								Not Uploaded 
+							{% endif %}
+						</p>
+					</td>
+					<td class="rep-cell" id="rep-file-cell">
+						<p>
+							<a href="{{ url_for('team_dashboard_bp.serveFile',  inputPID=row[0] , file_reqd=2) }}" target="_blank"><button class="view-btns">View</button></a>
+						</p>
+						<p>
+							{% if row[7] is not none %}
+								{{ row[7].strftime('%d-%m-%Y, %H:%M') }}
+							{% else %}
+								Not Uploaded 
+							{% endif %}
+						</p>
+					</td>
+					<td class="plink-cell">
+						{% if row[8] is not none %}
+							<a href="{{ row[8] }}" target="_blank"><button class="view-btns">Go To Link</button></a>
+						{% else %}
+							<a href="{{ row[8] }}" target="_blank"><button class="view-btns">Go To Link</button></a>
+							Not Entered 
+						{% endif %}	
+					</td>
+					<td class="options-cell">
+						<button id="modal-trigger2" onclick="showThisModal({{ loop.index + 1 }})" class="edit-btns modal-trigger">Edit</button>
+						<button id="modal-trigger3" onclick="showThisModal({{ loop.index + 1 + teamHomeData | length }})" class="delete-btns modal-trigger">Delete</button>
+					</td>
+				</tr>
+				{% endfor %}
+			</table>
+		</div>
+		{% for row in teamHomeData %}
+		<div id="modal{{loop.index + 1}}" class="modal">
+			<form id="modal-content{{loop.index + 1}}" class="modal-content dashboard-forms" method="POST" action="{{ url_for('team_dashboard_bp.teamEditProject', inputPID=row[0]) }}" enctype="multipart/form-data">
+				<div id="close-btn-div">
+					<span id="modal-close-button{{loop.index + 1}}" class="modal-close-button" onclick="closeThisModal({{loop.index + 1}})">&times;
+					</span>
+				</div>
+				<div>
+					<label for="proj-name">Name*</label>
+					<input type="text" name="proj-name" maxlength="50" value="{{ row[1] }}" required>
+				</div>
+				<div>
+					<label for="proj-duration">Duration*</label>
+					<input type="text" name="proj-duration" maxlength="20" value="{{ row[2] }}" required>
+				</div>
+				<div>
+					<label for="proj-pres">Presentation<div class="labelSmallText">(Max 20 MB, .pdf, .ppt, .pptx, .odp, .key)</div></label>
+					<input type="file" name="proj-pres" accept=".pdf,.ppt,.pptx,.odp,.key" value="{{ row[4] }}">
+				</div>
+				<div>
+					<label for="proj-report">Report<div class="labelSmallText">(Max 20 MB, .pdf, .doc, .docx, .pages, .odt)</div></label>
+					<input type="file" name="proj-report" accept=".pdf,.doc,.docx,.pages,.odt" value="{{ row[6] }}">
+				</div>
+				<div>
+					<label for="proj-repo-link">Project Link</label>
+					<input type="text" name="proj-repo-link" maxlength="180" value="{{ row[8] }}">
+				</div>
+				<div id="action-btn-div">
+					<button type="submit">Update</button>
+				</div>
+			</form>
+		</div>
+		{% endfor %}
+		{% for row in teamHomeData %}
+		<div id="modal{{loop.index + 1 + teamHomeData | length}}" class="modal">
+			<form id="modal-content{{loop.index + 1 + teamHomeData | length}}" class="modal-content dashboard-forms" method="POST" action="{{ url_for('team_dashboard_bp.teamDeleteProject', inputPID=row[0]) }}">
+				<div id="close-btn-div">
+					<span id="modal-close-button{{loop.index + 1 + teamHomeData | length}}" class="modal-close-button" onclick="closeThisModal({{loop.index + 1 + teamHomeData | length}})">&times;
+					</span>
+				</div>
+				<div>
+					<h1 id="del-q">Are you sure to delete ?</h1>
+				</div>
+				<div id="action-btn-div">
+					<button type="submit">Yes: Delete</button>
+				</div>
+			</form>
+		</div>
+		{% endfor %}
+	</section>
+	<script type="text/javascript" src="{{ url_for('static', filename='dashboard_common/modal.js') }}"></script>
+	<script type="text/javascript" src="{{ url_for('static', filename='dashboard_common/dashboard_base.js') }}"></script>
+{% endblock %}

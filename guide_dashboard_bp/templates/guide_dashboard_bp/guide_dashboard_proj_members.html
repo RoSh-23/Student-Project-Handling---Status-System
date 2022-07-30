@@ -1,0 +1,74 @@
+{% extends 'dashboard_common/dashboard_base.html' %}
+
+{% block head %}
+	{{ super.super() }}
+	{{ super() }}
+	{% block title %}Guide Dashboard - Project Member Details{% endblock %}
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='dashboard_common/dashboard_forms.css') }}">
+	<link rel="stylesheet" type="text/css" href="{{ url_for('guide_dashboard_bp.static', filename='guide_dashboard_home.css') }}">
+{% endblock%}
+
+{% block org_logo %}
+	<a href="{{ url_for('guide_dashboard_bp.guide_dashboard_home') }}"><img src="{{ url_for('static', filename='org_logo.jpg') }}"></a>
+{% endblock %}
+
+{% block username %}
+	{{ session['guide_username'] }}
+{% endblock %}
+
+{% block logout %}
+	<a href="{{ url_for('guide_auth_bp.guideLogout') }}"><button id="logout-btn">Logout</button></a>
+{% endblock %}
+
+{% block side_nav_options %}
+	<ul>
+		<a href="{{ url_for('guide_dashboard_bp.guide_dashboard_home') }}"><li>Project List</li></a>
+		<a href="{{ url_for('guide_dashboard_bp.guideProfile') }}"><li>My Profile</li></a><a href="{{ url_for('guide_dashboard_bp.guideCommunications') }}"><li>Manage Communications</li></a>
+	</ul>
+{% endblock %}
+
+{% block body %}
+	{{ super() }}
+	{% with messages = get_flashed_messages() %}
+		{% if messages %}
+			{% for message in messages %}
+			<div class="flashed-messages" >
+				{{ message }}
+				<button id="flash-message-close-btn" onclick="remFlashMessage({{ loop.index }})">X
+				</button>
+			</div>
+			{% endfor %}
+		{% endif %}
+	{% endwith %}
+	<section id="contentSec">
+		<div id="contentSec-hd">
+			<h1>{% if teamName is not none %} {{ teamName }} {% else %} No Team {% endif %} - Member Details</h1>
+		</div>
+		<div id="table-div">
+			<table class="dashboard-tables">
+				<tr id="header-row">
+					<th class="sr-no-cell">Sr. No.</th>
+					<th class="sname-cell">Name</th>
+					<th class="stream-cell">Stream</th>
+					<th class="sec-cell">Section</th>
+					<th class="email-cell">Email</th>
+					<th class="mobno-cell">Mobile Number</th>
+				</tr>
+				{% if teamMembersData is not none %}
+				{% for tup in teamMembersData %}
+				<tr>
+					<td class="sr-no-cell">{{ loop.index }}</td>
+					<td class="sname-cell">{{ tup[1] }}</td>
+					<td class="stream-cell">{{ tup[2] }}</td>
+					<td class="sec-cell">{{ tup[3] }}</td>
+					<td class="email-cell">{{ tup[4] }}</td>
+					<td class="mobno-cell">{{ tup[5] }}</td>
+				</tr>
+				{% endfor %}
+				{% endif %}
+			</table>
+		</div>
+	</section>
+	<script type="text/javascript" src="{{ url_for('static', filename='dashboard_common/modal.js') }}"></script>
+	<script type="text/javascript" src="{{ url_for('static', filename='dashboard_common/dashboard_base.js') }}"></script>
+{% endblock %}
