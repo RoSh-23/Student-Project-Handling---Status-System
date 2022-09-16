@@ -18,4 +18,4 @@ BCA Semester Project
 --> Created Data Flow and ER diagrams. 
 --> Used Flask framework and read its documentation extensively.
 --> Used Flask blueprints to add modularity to the app.
---> Learned a alot about cookies, sessions, file upload -- security issues, authentication methods, URL manipulation  
+--> Learned alot about cookies, sessions, file upload -- security issues, authentication methods, URL manipulation  
