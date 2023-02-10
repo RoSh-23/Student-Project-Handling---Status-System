@@ -4,13 +4,13 @@
 + A web application, created using **Python, Flask, SQL, PostgreSQL, HTML, CSS & JavaScript**. 
 + Two sets of users namely **Teams** and **Guides** 
 + **Functionality**
-      + Registering new guides and teams.
-      + Automatic guide allocation.
-      + Uploading project presentation and report by teams. 
-      + A non-live **interaction system between teams and guides**. 
-      + A centralized interface for guides to view projects under them, team members, project resources, contact info and interact with teams. 
-      + A centralized interface for teams to interact with guides and upload resources.
-      + Protection **against URL manipulation**.
+  - Registering new guides and teams.
+  - Automatic guide allocation.
+  - Uploading project presentation and report by teams. 
+  - A non-live **interaction system between teams and guides**. 
+  - A centralized interface for guides to view projects under them, team members, project resources, contact info and interact with teams. 
+  - A centralized interface for teams to interact with guides and upload resources.
+  - Protection **against URL manipulation**.
 + Implemented an **algorithm to allot guides automatically to teams and ensure parity of projects under each guide**.
 + Created several **views and functions** using SQL.
 + Made **Database Design** and normalized it.
