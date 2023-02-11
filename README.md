@@ -1,5 +1,5 @@
 # Student-Project-Handling---Status-System 
-
+:triangular_flag_on_post: Note: This is just a practice project which was not deployed. The major objective was to just practice my HTML, CSS, JS, Python, SQL and Database Design skills. 
 + Project to **digitize and automate** the entire process of student project handling at an educational institute. 
 + A web application, created using **Python, Flask, SQL, PostgreSQL, HTML, CSS & JavaScript**. 
 + Two sets of users namely **Teams** and **Guides** 
