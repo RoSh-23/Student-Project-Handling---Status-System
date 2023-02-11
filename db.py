@@ -9,7 +9,7 @@ from flask.cli import with_appcontext
 # this function creates the database if does not exit and connects 
 def get_db():
 	if 'db' not in g:
-		g.db = psycopg2.connect(dbname='Stud_Proj_Hand_Sta_System', user='postgres', host='localhost', password='scsitbcaro23')
+		g.db = psycopg2.connect(dbname='*****', user='*****', host='*****', password='*****')
 
 	return g.db
 
